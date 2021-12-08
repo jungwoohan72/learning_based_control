@@ -1,2 +1,9 @@
 /SAC/raisimLib/
 /PPO/raisimLib/
+/raisimLib/
+/SAC/LearningBasedControl_FinalProject2021/build/
+/SAC/LearningBasedControl_FinalProject2021/cmake-build-debug/
+/SAC/LearningBasedControl_FinalProject2021/raisim_gym_torch.egg-info/
+/PPO/LearningBasedControl_FinalProject2021/build/
+/PPO/LearningBasedControl_FinalProject2021/cmake-build-debug/
+/PPO/LearningBasedControl_FinalProject2021/raisim_gym_torch.egg-info/

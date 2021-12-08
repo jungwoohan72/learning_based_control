@@ -6,8 +6,8 @@ import os
 import math
 import time
 
-from raisimGymTorch.algo.sac.sac import SAC
 from raisimGymTorch.algo.sac.replay_memory import ReplayMemory
+from raisimGymTorch.algo.sac.sac import SAC
 
 import torch.nn as nn
 import numpy as np
@@ -93,7 +93,7 @@ memory = ReplayMemory(args.replay_size, args.seed)
 
 updates = 0
 
-wandb.init(project=task_name)
+# wandb.init(project=task_name)
 
 for update in range(start, 1000000):
     start = time.time()
@@ -163,10 +163,10 @@ for update in range(start, 1000000):
 
     end = time.time()
 
-    log_dict = dict()
-    log_dict['Completion Time'] = completed_sum / env.num_envs * cfg['environment']['control_dt']
-    log_dict['Number of Dones'] = done_sum
-    wandb.log(log_dict)
+    # log_dict = dict()
+    # log_dict['Completion Time'] = completed_sum / env.num_envs * cfg['environment']['control_dt']
+    # log_dict['Number of Dones'] = done_sum
+    # wandb.log(log_dict)
 
     print('----------------------------------------------------')
     print('{:>6}th iteration'.format(update))

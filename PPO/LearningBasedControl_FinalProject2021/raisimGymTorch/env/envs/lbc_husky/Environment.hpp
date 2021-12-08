@@ -147,15 +147,15 @@ class ENVIRONMENT : public RaisimGymEnv {
     auto theta = acos(xy_error_unit_vec.dot(body_vel_unit_vec)) * 180.0/M_PI;
 
     if (gc_.head<2>().norm() < 2 && is_terminal == true) {
-        rewards_.record("terminal", 2);
+        rewards_.record("terminal", 0.35);
         is_terminal = false;
     }
     if (gc_.head<2>().norm() < 5 && is_intermed == true) {
-        rewards_.record("terminal", 1);
+        rewards_.record("terminal", 0.2);
         is_intermed = false;
     }
     if (gc_.head<2>().norm() < 10 && is_initial == true) {
-        rewards_.record("terminal", 0.5);
+        rewards_.record("terminal", 0.1);
         is_initial = false;
     }
 //    if (is_terminal == false && is_over == true && gc.head<2>().norm() > 2) {
@@ -215,22 +215,22 @@ class ENVIRONMENT : public RaisimGymEnv {
   }
 
   void curriculumUpdate() {
-      high_counter++;
-      high_inter_counter++;
-      low_counter++;
-      warm_up++;
-
-      if (high_counter % 100 == 0 && warm_up <= 1400) {
-          high_counter = 0;
-          xPos_init_high += 1;
-          yPos_init_high += 1;
-      }
-
-      if (low_counter % 500 == 0 && warm_up >= 2000 && warm_up <= 3000) {
-          low_counter = 0;
-          xPos_init_low += 1;
-          yPos_init_low += 1;
-      }
+//      high_counter++;
+//      high_inter_counter++;
+//      low_counter++;
+//      warm_up++;
+//
+//      if (high_counter % 100 == 0 && warm_up <= 1400) {
+//          high_counter = 0;
+//          xPos_init_high += 1;
+//          yPos_init_high += 1;
+//      }
+//
+//      if (low_counter % 500 == 0 && warm_up >= 2000 && warm_up <= 3000) {
+//          low_counter = 0;
+//          xPos_init_low += 1;
+//          yPos_init_low += 1;
+//      }
   };
 
  private:
@@ -244,15 +244,15 @@ class ENVIRONMENT : public RaisimGymEnv {
   int SCANSIZE = 20;
   int GRIDSIZE = 6;
   std::vector<raisim::Visuals *> scans;  // for visualization
-//  int xPos_init_high = 30;
-//  int yPos_init_high = 30;
-//  int xPos_init_low = 5;
-//  int yPos_init_low = 5;
+  int xPos_init_high = 30;
+  int yPos_init_high = 30;
+  int xPos_init_low = 5;
+  int yPos_init_low = 5;
 
-  int xPos_init_high = 15;
-  int yPos_init_high = 15;
-  int xPos_init_low = 2;
-  int yPos_init_low = 2;
+//  int xPos_init_high = 15;
+//  int yPos_init_high = 15;
+//  int xPos_init_low = 2;
+//  int yPos_init_low = 2;
 
   bool is_terminal = true;
   bool is_intermed = true;

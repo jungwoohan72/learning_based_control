@@ -1,7 +1,7 @@
 from ruamel.yaml import YAML, dump, RoundTripDumper
 from raisimGymTorch.env.bin import lbc_husky
 from raisimGymTorch.env.RaisimGymVecEnv import RaisimGymVecEnv as VecEnv
-import raisimGymTorch.algo.ppo.module as ppo_module
+
 import os
 import math
 import time
@@ -25,8 +25,8 @@ fig = plt.figure(1)
 ax = fig.add_subplot(111)
 plt.show(block = False)
 
-for i in range(6000,6900,100):
-    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/2021-12-02-12-53-12-Curriculum1000/full_{}.pt".format(6500)
+for i in range(10000,15000,100):
+    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/2021-12-07-22-15-45/full_{}.pt".format(i)
 
     # config
     cfg = YAML().load(open(task_path + "/cfg.yaml", 'r'))

@@ -69,7 +69,7 @@ ppo = PPO.PPO(actor=actor,
               num_mini_batches=4,
               device=device,
               log_dir=saver.data_dir,
-              shuffle_batch=False,
+              shuffle_batch=True,
               )
 
 if mode == 'retrain':
