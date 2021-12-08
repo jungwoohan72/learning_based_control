@@ -10,6 +10,8 @@ import argparse
 
 import matplotlib.pyplot as plt
 
+import statistics
+
 # configuration
 parser = argparse.ArgumentParser()
 parser.add_argument('-w', '--weight', help='trained weight path', type=str, default='')
@@ -19,11 +21,14 @@ fig = plt.figure(1)
 ax = fig.add_subplot(111)
 plt.show(block = False)
 
-for i in range(5000,7200,200):
+lst = []
+avg = 0
+
+for i in range(10):
     # directories
     task_path = os.path.dirname(os.path.realpath(__file__))
     home_path = task_path + "/../../../.."
-    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/2021-12-03-00-17-20-12000-min/full_{}.pt".format(i)
+    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/0.env50_bothRewards_outOfGoalPenalty/full_{}.pt".format(5000)
 
     # config
     cfg = YAML().load(open(task_path + "/cfg.yaml", 'r'))
@@ -63,7 +68,7 @@ for i in range(5000,7200,200):
         completed_sum = 0
 
         for step in range(max_steps):
-            time.sleep(cfg['environment']['control_dt'])
+            # time.sleep(cfg['environment']['control_dt'])
             obs = env.observe(False)
             action = loaded_graph.architecture(torch.from_numpy(obs).cpu())
             reward, dones, not_completed = env.step(action.cpu().detach().numpy())
@@ -76,3 +81,8 @@ for i in range(5000,7200,200):
         plt.scatter(i, completed_sum / env.num_envs * cfg['environment']['control_dt'])
         plt.pause(0.001)
         env.turn_off_visualization()
+        avg += completed_sum / env.num_envs * cfg['environment']['control_dt']
+        lst.append(completed_sum / env.num_envs * cfg['environment']['control_dt'])
+print(avg/10)
+print(statistics.stdev(lst))
+print(min(lst))

@@ -107,10 +107,9 @@ class ENVIRONMENT : public RaisimGymEnv {
   void reset() final {
     {
       double xPos, yPos;
-      is_initial = true;
-      is_intermed = true;
-      is_terminal = true;
-      is_over = true;
+      is_initial = false;
+      is_intermed = false;
+      is_terminal = false;
 
       do {
         int i = int((uniDist_(gen_) * .5 + 0.5) * poles_.size());
@@ -146,22 +145,21 @@ class ENVIRONMENT : public RaisimGymEnv {
     auto body_vel_unit_vec = gv_.head(2) / gv_.head<2>().norm();
     auto theta = acos(xy_error_unit_vec.dot(body_vel_unit_vec)) * 180.0/M_PI;
 
-    if (gc_.head<2>().norm() < 2 && is_terminal == true) {
-        rewards_.record("terminal", 0.35);
-        is_terminal = false;
+    if (gc_.head<2>().norm() < 2) {
+        rewards_.record("terminal", 0.3);
+        is_terminal = true;
     }
-    if (gc_.head<2>().norm() < 5 && is_intermed == true) {
+    if (gc_.head<2>().norm() < 5 && is_intermed == false) {
         rewards_.record("terminal", 0.2);
-        is_intermed = false;
+        is_intermed = true;
     }
-    if (gc_.head<2>().norm() < 10 && is_initial == true) {
+    if (gc_.head<2>().norm() < 10 && is_initial == false) {
         rewards_.record("terminal", 0.1);
-        is_initial = false;
+        is_initial = true;
     }
-//    if (is_terminal == false && is_over == true && gc.head<2>().norm() > 2) {
-//        rewards_.record("terminal", -3);
-//        is_over = false;
-//    }
+    if (is_terminal == false && gc_.head<2>().norm() > 2) {
+        rewards_.record("terminal", -0.06);
+    }
 
     rewards_.record("goal", gc_.head<2>().norm());
 
@@ -177,7 +175,7 @@ class ENVIRONMENT : public RaisimGymEnv {
 
     Eigen::VectorXd lidarData(SCANSIZE);
     Eigen::Vector3d direction;
-    const double scanWidth = 2. * M_PI;
+    const double scanWidth = 0.125 * M_PI;
 
     for (int j = 0; j < SCANSIZE; j++) {
       const double yaw = j * M_PI / SCANSIZE * scanWidth - scanWidth * 0.5 * M_PI;
@@ -241,7 +239,7 @@ class ENVIRONMENT : public RaisimGymEnv {
   Eigen::VectorXd gc_init_, gv_init_, gc_, gv_, genForce_, torque4_;
   Eigen::VectorXd actionMean_, actionStd_, obDouble_;
   std::vector<Eigen::Vector2d> poles_;
-  int SCANSIZE = 20;
+  int SCANSIZE = 7;
   int GRIDSIZE = 6;
   std::vector<raisim::Visuals *> scans;  // for visualization
   int xPos_init_high = 30;
@@ -254,10 +252,9 @@ class ENVIRONMENT : public RaisimGymEnv {
 //  int xPos_init_low = 2;
 //  int yPos_init_low = 2;
 
-  bool is_terminal = true;
-  bool is_intermed = true;
-  bool is_initial = true;
-  bool is_over = true;
+  bool is_terminal = false;
+  bool is_intermed = false;
+  bool is_initial = false;
 
   int high_counter = 0; // for curriculum learning
   int low_counter = 0;
