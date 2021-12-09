@@ -1,10 +1,12 @@
 # learning_based_control
+*Code folders are temporarily unvisible because the competition is not over yet.
+
 ME491 Term Project - Control Husky via deep Reinforcement Learning
 
-Goal of this project is to control the husky from random initial points toward the designated destination (center of the envrionment) as quickly as possible.
+Goal of this project is to control the husky from random initial points toward the designated destination (center of the envrionment) as quickly as possible by using deep Reinforcement Learning.
 
 Allowed information is:  
-1. pose, linear velocities and angular velocities w.r.t the world frame
+1. Pose, linear velocities and angular velocities w.r.t the world frame
 2. Wheel speed
 3. 20 LiDAR points with respective to the robot body frame.
 
