@@ -28,7 +28,7 @@ for i in range(10):
     # directories
     task_path = os.path.dirname(os.path.realpath(__file__))
     home_path = task_path + "/../../../.."
-    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/0.env50_bothRewards_outOfGoalPenalty/full_{}.pt".format(5000)
+    weight_path = home_path + "/raisimGymTorch/data/husky_navigation/0.env50_bothRewards_outOfGoalPenalty0.06(5.766)/full_{}.pt".format(5000)
 
     # config
     cfg = YAML().load(open(task_path + "/cfg.yaml", 'r'))
