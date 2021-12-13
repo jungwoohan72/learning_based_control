@@ -8,3 +8,4 @@
 /PPO/LearningBasedControl_FinalProject2021/cmake-build-debug/
 /PPO/LearningBasedControl_FinalProject2021/raisim_gym_torch.egg-info/
 /.idea
+/.gitignore
