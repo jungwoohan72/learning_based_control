@@ -5,7 +5,7 @@ ME491 Term Project - Control Husky via deep Reinforcement Learning
 
 **Result:**
 
-**Rank: 13/48**
+**Rank: 13/48**  
 **Time: 5.7055s**
 
 
