@@ -3,6 +3,12 @@
 
 ME491 Term Project - Control Husky via deep Reinforcement Learning
 
+**Result:**
+
+**Rank: 13/48**
+**Time: 5.7055s**
+
+
 Goal of this project is to control the husky from random initial points toward the designated destination (center of the envrionment) as quickly as possible by using deep Reinforcement Learning.
 
 Allowed information is:  
