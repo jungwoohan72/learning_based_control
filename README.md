@@ -1,6 +1,4 @@
 # learning_based_control
-*Code folders are temporarily unvisible because the competition is not over yet.
-
 ME491 Term Project - Control Husky via deep Reinforcement Learning
 
 **Result:**
